@@ -24,6 +24,3 @@ Thumbs.db
 logs/
 *.sqlite
 *.db
-
-# Uploaded docs (optional — only add if your HR PDFs are confidential)
-docs/
