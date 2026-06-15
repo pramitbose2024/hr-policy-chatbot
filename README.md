@@ -30,6 +30,37 @@ covered in the documents.
 
 ---
 
+## Evaluation Results
+
+This project includes a dedicated evaluation pipeline (`evaluate.py`) that
+runs a 20-question golden test set through four independent test suites.
+
+| Metric | Result |
+|---|---|
+| **Retrieval Accuracy** (top-K) | 94.7% (18/19) |
+| **Groundedness Score** (LLM-as-judge, 1–5) | 4.45 / 5.0 |
+| **Guardrail Compliance** | 5/5 |
+| **Multi-turn Memory Retention** | 2/2 |
+| **Overall System Readiness** | 95.9% |
+
+**What's measured:**
+- **Retrieval Accuracy** — whether the correct policy document appears
+  in the top-K retrieved chunks for each query
+- **Groundedness Score** — a separate LLM judges each answer for factual
+  accuracy and whether it's fully supported by retrieved context
+- **Guardrail Compliance** — tests against off-topic questions, prompt
+  injection, hallucination probes, and role-specificity edge cases
+- **Multi-turn Memory** — confirms follow-up questions with pronoun
+  references ("Can those days be carried over?") are correctly resolved
+  using conversation history
+
+Run the evaluation yourself:
+```bash
+python evaluate.py
+```
+
+---
+
 ## Key Technical Highlights
 
 ### Retrieval-Augmented Generation (RAG)
@@ -67,29 +98,59 @@ A carefully engineered system prompt constrains the LLM to:
 ---
 
 ## Project Structure
-
-```
 hr-policy-rag-chatbot/
-│
-├── config.py          # Central config: model names, chunk size,
-│                      # overlap, retriever K, all file paths
-│
-├── ingest.py          # Document ingestion pipeline:
-│                      # load PDFs/DOCX → chunk → embed → store in ChromaDB
-│
-├── chain.py           # Core RAG chain: loads vector store, builds
-│                      # MMR retriever, loads LLM, assembles
-│                      # ConversationalRetrievalChain with memory
-│
-├── test_chain.py      # Offline test suite: smoke tests, multi-turn
-│                      # memory tests, guardrail tests, interactive mode
-│
-├── requirements.txt   # All Python dependencies
-├── .env               # API keys — never committed (see .gitignore)
-│
-└── docs/              # HR policy PDFs/DOCX files go here
-```
 
+│
+
+├── config.py          # Central config: model names, chunk size,
+
+│                      # overlap, retriever K, all file paths
+
+│
+
+├── ingest.py          # Document ingestion pipeline:
+
+│                      # load PDFs/DOCX → chunk → embed → store in ChromaDB
+
+│
+
+├── chain.py           # Core RAG chain: loads vector store, builds
+
+│                      # MMR retriever, loads LLM, assembles
+
+│                      # ConversationalRetrievalChain with memory
+
+│
+
+├── test_chain.py      # Offline test suite: smoke tests, multi-turn
+
+│                      # memory tests, guardrail tests, interactive mode
+
+│
+
+├── evaluate.py         # Evaluation pipeline: retrieval accuracy,
+
+│                      # LLM-as-judge groundedness, guardrail tests,
+
+│                      # multi-turn memory tests
+
+│
+
+├── golden_test_set.json  # 20-question benchmark set used by evaluate.py
+
+│
+
+├── logger.py          # SQLite logging for queries and eval results
+
+│
+
+├── requirements.txt   # All Python dependencies
+
+├── .env               # API keys — never committed (see .gitignore)
+
+│
+
+└── docs/              # HR policy PDFs/DOCX files go here
 > ⚠️ **Disclaimer on Sample Documents**
 >
 > The policy documents provided in the `docs/` folder are AI-generated for
@@ -125,10 +186,7 @@ pip install -r requirements.txt
 
 ### 4. Configure environment variables
 Create a `.env` file in the project root:
-```
 GROQ_API_KEY=your_groq_api_key_here
-```
-
 Get a free Groq API key at [console.groq.com](https://console.groq.com) —
 no credit card required.
 
@@ -145,15 +203,6 @@ This loads your documents, splits them into chunks, generates embeddings
 using `all-MiniLM-L6-v2`, and stores them in a local ChromaDB vector store.
 Run this once per document update.
 
-Expected output:
-```
-📂 Found 3 document(s) in 'docs'
-✅ Total pages loaded: 47
-✂️  Chunks created: 312
-✅ Vector store saved to 'chroma_db'
-✅ Ingestion complete. Ready for Phase 2.
-```
-
 ### Step 2 — Test the chain (optional but recommended)
 ```bash
 python test_chain.py
@@ -162,12 +211,20 @@ python test_chain.py
 Runs automated smoke tests, multi-turn memory tests, and guardrail
 tests in the terminal before wiring to any UI.
 
+### Step 3 — Run the evaluation suite
+```bash
+python evaluate.py
+```
+
+Runs the full benchmark and prints a summary report — see
+**Evaluation Results** above for what to expect.
+
 ---
 
 ## Skills Demonstrated
 
 This project was built to demonstrate end-to-end competency across
-the full RAG stack — from document processing to deployed UI.
+the full RAG stack — from document processing to evaluation.
 
 | Area | What's demonstrated |
 |---|---|
@@ -177,7 +234,7 @@ the full RAG stack — from document processing to deployed UI.
 | **Prompt Engineering** | Multi-rule system prompt with specificity guards, role-matching rules, and guardrail patterns |
 | **Conversational Memory** | `ConversationBufferWindowMemory` with custom condense prompt that resolves pronouns across turns |
 | **Production Structure** | Separation of config, ingestion, chain logic, and UI into distinct modules; no hardcoded values |
-| **Evaluation Mindset** | Dedicated test suite covering happy path, memory, guardrails, and edge cases before deployment |
+| **Evaluation Mindset** | Dedicated 4-suite evaluation pipeline with golden test set and LLM-as-judge scoring |
 
 ### Why RAG over fine-tuning?
 Fine-tuning an LLM on HR documents would bake the knowledge into model
@@ -193,12 +250,13 @@ source of truth changes regularly.
 
 | Component | Technology |
 |---|---|
-| LLM | Groq API — Llama 3.3 70B Versatile |
+| LLM | Groq API — Llama 3.1 8B Instant |
 | Embeddings | `sentence-transformers/all-MiniLM-L6-v2` |
 | Vector Store | ChromaDB (local persistent) |
 | Retrieval | MMR (Maximal Marginal Relevance) |
 | Orchestration | LangChain `ConversationalRetrievalChain` |
 | Document Parsing | PyPDF, docx2txt |
+| Evaluation | LLM-as-judge groundedness scoring |
 
 ---
 
