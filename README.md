@@ -199,7 +199,6 @@ source of truth changes regularly.
 | Retrieval | MMR (Maximal Marginal Relevance) |
 | Orchestration | LangChain `ConversationalRetrievalChain` |
 | Document Parsing | PyPDF, docx2txt |
-| UI | Streamlit |
 
 ---
 
