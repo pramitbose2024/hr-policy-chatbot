@@ -98,59 +98,36 @@ A carefully engineered system prompt constrains the LLM to:
 ---
 
 ## Project Structure
+```
 hr-policy-rag-chatbot/
-
 │
-
 ├── config.py          # Central config: model names, chunk size,
-
 │                      # overlap, retriever K, all file paths
-
 │
-
 ├── ingest.py          # Document ingestion pipeline:
-
 │                      # load PDFs/DOCX → chunk → embed → store in ChromaDB
-
 │
-
 ├── chain.py           # Core RAG chain: loads vector store, builds
-
 │                      # MMR retriever, loads LLM, assembles
-
 │                      # ConversationalRetrievalChain with memory
-
 │
-
 ├── test_chain.py      # Offline test suite: smoke tests, multi-turn
-
 │                      # memory tests, guardrail tests, interactive mode
-
 │
-
 ├── evaluate.py         # Evaluation pipeline: retrieval accuracy,
-
 │                      # LLM-as-judge groundedness, guardrail tests,
-
 │                      # multi-turn memory tests
-
 │
-
 ├── golden_test_set.json  # 20-question benchmark set used by evaluate.py
-
 │
-
 ├── logger.py          # SQLite logging for queries and eval results
-
 │
-
 ├── requirements.txt   # All Python dependencies
-
 ├── .env               # API keys — never committed (see .gitignore)
-
 │
-
 └── docs/              # HR policy PDFs/DOCX files go here
+```
+
 > ⚠️ **Disclaimer on Sample Documents**
 >
 > The policy documents provided in the `docs/` folder are AI-generated for
