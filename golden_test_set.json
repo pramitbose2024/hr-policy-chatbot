@@ -1,0 +1,142 @@
+[
+  {
+    "id": 1,
+    "question": "How many days of Earned Leave (EL) are confirmed employees entitled to per year?",
+    "expected_keywords": ["earned leave", "18 days", "annual entitlement"],
+    "expected_source": "Leave_Policy.pdf",
+    "category": "leave"
+  },
+  {
+    "id": 2,
+    "question": "Can unused Earned Leave be carried over to the next year?",
+    "expected_keywords": ["carry forward", "earned leave", "30 days"],
+    "expected_source": "Leave_Policy.pdf",
+    "category": "leave"
+  },
+  {
+    "id": 3,
+    "question": "How many sick days is a confirmed employee entitled to per year?",
+    "expected_keywords": ["sick leave", "12 days", "confirmed employees"],
+    "expected_source": "Leave_Policy.pdf",
+    "category": "leave"
+  },
+  {
+    "id": 4,
+    "question": "What is the maximum carry-forward balance for sick leave?",
+    "expected_keywords": ["sick leave", "carry forward", "15 days"],
+    "expected_source": "Leave_Policy.pdf",
+    "category": "leave"
+  },
+  {
+    "id": 5,
+    "question": "How many weeks of maternity leave are female employees entitled to?",
+    "expected_keywords": ["maternity leave", "26 weeks"],
+    "expected_source": "Leave_Policy.pdf",
+    "category": "leave"
+  },
+  {
+    "id": 6,
+    "question": "What is the process for raising a formal grievance?",
+    "expected_keywords": ["grievance", "HRMS", "investigator", "resolution"],
+    "expected_source": "Attendance_Policy.pdf",
+    "category": "conduct"
+  },
+  {
+    "id": 7,
+    "question": "What are the standard working hours for male employees?",
+    "expected_keywords": ["working hours", "9:00 AM", "male employees"],
+    "expected_source": "Attendance_Policy.pdf",
+    "category": "attendance"
+  },
+  {
+    "id": 8,
+    "question": "What are the standard working hours for female employees?",
+    "expected_keywords": ["working hours", "9:00 AM", "female employees"],
+    "expected_source": "Attendance_Policy.pdf",
+    "category": "attendance"
+  },
+  {
+    "id": 9,
+    "question": "Is remote work or work from home allowed for employees?",
+    "expected_keywords": ["remote work", "WFH", "flexible arrangement"],
+    "expected_source": "Attendance_Policy.pdf",
+    "category": "attendance"
+  },
+  {
+    "id": 10,
+    "question": "What is the WFH setup allowance for employees in India?",
+    "expected_keywords": ["WFH allowance", "Rs. 10,000", "setup"],
+    "expected_source": "Compensation_and_Benefits.pdf",
+    "category": "compensation"
+  },
+  {
+    "id": 11,
+    "question": "What happens if an employee violates the code of conduct?",
+    "expected_keywords": ["disciplinary", "violation", "code of conduct"],
+    "expected_source": "Code_of_Conduct.pdf",
+    "category": "conduct"
+  },
+  {
+    "id": 12,
+    "question": "How are harassment complaints handled confidentially?",
+    "expected_keywords": ["harassment", "confidentiality", "investigation"],
+    "expected_source": "Code_of_Conduct.pdf",
+    "category": "conduct"
+  },
+  {
+    "id": 13,
+    "question": "What is the minimum stipend for an intern?",
+    "expected_keywords": ["intern", "stipend", "₹10,000"],
+    "expected_source": "Role_Wise_Minimum_Salary_Reference_India.pdf",
+    "category": "compensation"
+  },
+  {
+    "id": 14,
+    "question": "What is the minimum salary range for an AI Engineer?",
+    "expected_keywords": ["AI Engineer", "₹7,00,000", "₹12,00,000"],
+    "expected_source": "Role_Wise_Minimum_Salary_Reference_India.pdf",
+    "category": "compensation"
+  },
+  {
+    "id": 15,
+    "question": "Can high-performing interns receive a Pre-Placement Offer (PPO)?",
+    "expected_keywords": ["PPO", "Pre-Placement Offer", "internship"],
+    "expected_source": "Employment_Terms.pdf",
+    "category": "employment"
+  },
+  {
+    "id": 16,
+    "question": "What is the duration of a summer internship?",
+    "expected_keywords": ["summer internship", "8-10 weeks"],
+    "expected_source": "Employment_Terms.pdf",
+    "category": "employment"
+  },
+  {
+    "id": 17,
+    "question": "What is the notice period for resignation?",
+    "expected_keywords": ["notice period", "resignation"],
+    "expected_source": "Resignation_and_Termination.pdf",
+    "category": "employment"
+  },
+  {
+    "id": 18,
+    "question": "What benefits are settled upon resignation, such as Provident Fund?",
+    "expected_keywords": ["Provident Fund", "PF", "settlement"],
+    "expected_source": "Resignation_and_Termination.pdf",
+    "category": "employment"
+  },
+  {
+    "id": 19,
+    "question": "How is employee performance reviewed at this organization?",
+    "expected_keywords": ["performance review", "appraisal", "KPI"],
+    "expected_source": "Performance_and_Promotion.pdf",
+    "category": "performance"
+  },
+  {
+    "id": 20,
+    "question": "What is the capital of France?",
+    "expected_keywords": ["couldn't find", "HR policy", "assist"],
+    "expected_source": null,
+    "category": "guardrail"
+  }
+]
