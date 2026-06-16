@@ -114,7 +114,7 @@ hr-policy-rag-chatbot/
 ├── test_chain.py      # Offline test suite: smoke tests, multi-turn
 │                      # memory tests, guardrail tests, interactive mode
 │
-├── evaluate.py         # Evaluation pipeline: retrieval accuracy,
+├── evaluate.py        # Evaluation pipeline: retrieval accuracy,
 │                      # LLM-as-judge groundedness, guardrail tests,
 │                      # multi-turn memory tests
 │
