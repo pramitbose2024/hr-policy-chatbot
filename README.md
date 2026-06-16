@@ -164,6 +164,7 @@ pip install -r requirements.txt
 ### 4. Configure environment variables
 Create a `.env` file in the project root:
 GROQ_API_KEY=your_groq_api_key_here
+
 Get a free Groq API key at [console.groq.com](https://console.groq.com) —
 no credit card required.
 
